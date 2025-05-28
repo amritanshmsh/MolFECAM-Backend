@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# VS Code settings
+.vscode/
+.history/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python distribution
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Log files
+*.log
+
+# Environment variables or local secrets
+.env
+.env.*
+
+# Jupyter / notebook / interactive
+.ipynb_checkpoints/
+
+# Data or outputs
+data/
+outputs/
