@@ -3,8 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
-
-from app.models.molformer import initialize_pipeline_multi_dataset, predict_properties
+from app.models.molformer import initialize_pipeline, predict_properties
 
 app = FastAPI()
 
@@ -18,7 +17,7 @@ app.add_middleware(
 
 
 if __name__ == "__main__":
-    initialize_pipeline_multi_dataset()
+    initialize_pipeline()
 
 @app.get("/")
 def read_root(): 

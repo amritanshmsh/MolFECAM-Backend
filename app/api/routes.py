@@ -1,11 +1,10 @@
 from fastapi import APIRouter
 from app.schemas import MoleculeRequest, PredictionResponse
 # from app.services.predictor import make_prediction
-from app.models.molformer import initialize_pipeline_multi_dataset, predict_properties
-
+from app.models.molformer import initialize_pipeline, predict_properties
 router = APIRouter()
 
-feature_extractor, classifier = initialize_pipeline_multi_dataset()
+feature_extractor, classifier = initialize_pipeline()
 
 @router.post("/predict", response_model=list[PredictionResponse])
 def predict_molecular_properties(request: MoleculeRequest):
