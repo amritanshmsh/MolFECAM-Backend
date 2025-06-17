@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
-from app.models.molformer import initialize_pipeline, predict_properties
+from app.models.molformer import initialize_pipeline, predict_properties, get_forgetting_measures
 
 app = FastAPI()
 
@@ -31,3 +31,6 @@ class MoleculeRequest(BaseModel):
 def predict_molecular_properties(request: MoleculeRequest):
     predictions = predict_properties(request.smiles)
     return {"results": predictions}
+@app.get("/metrics/forgetting")
+def forgetting_metrics():
+    return get_forgetting_measures()

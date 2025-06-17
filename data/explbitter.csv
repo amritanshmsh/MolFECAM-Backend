@@ -209,7 +209,7 @@
 207,207,Gentiobiose,Bitter,Rojas et al. (2017),OCC1OC(OCC2OC(O)C(C(C2O)O)O)C(C(C1O)O)O,OCC1OC(OCC2OC(O)C(C(C2O)O)O)C(C(C1O)O)O,1,1
 208,208,Limonin,Bitter,Rojas et al. (2017),O=C1OCC23C(C1)OC(C2CC(=O)C1(C3CCC2(C31OC3C(=O)OC2c1cocc1)C)C)(C)C,O=C1OCC23C(C1)OC(C2CC(=O)C1(C3CCC2(C31OC3C(=O)OC2c1cocc1)C)C)(C)C,1,1
 209,209,Oleuropein,Bitter,Rojas et al. (2017),OCC1OC(OC2OC=C(C(C2=CC)CC(=O)OCCc2ccc(c(c2)O)O)C(=O)OC)C(C(C1O)O)O,OCC1OC(OC2OC=C(C(C2=CC)CC(=O)OCCc2ccc(c(c2)O)O)C(=O)OC)C(C(C1O)O)O,1,1
-210,210,Caffeine ,Bitter,Rojas et al. (2017),Cn1cnc2c1c(=O)n(C)c(=O)n2C,Cn1cnc2c1c(=O)n(C)c(=O)n2C,1,1
+210,210,Caffeine,Bitter,Rojas et al. (2017),Cn1cnc2c1c(=O)n(C)c(=O)n2C,Cn1cnc2c1c(=O)n(C)c(=O)n2C,1,1
 211,211,Poncirin,Bitter,Rojas et al. (2017),OCC1OC(Oc2cc3OC(CC(=O)c3c(c2)O)c2ccc(cc2)OC)C(C(C1O)O)OC1OC(C)C(C(C1O)O)O,OCC1OC(Oc2cc3OC(CC(=O)c3c(c2)O)c2ccc(cc2)OC)C(C(C1O)O)OC1OC(C)C(C(C1O)O)O,1,1
 212,212,Neoeriocitrin,Bitter,Rojas et al. (2017),OCC1OC(Oc2cc(O)c3c(c2)OC(CC3=O)c2ccc(c(c2)O)O)C(C(C1O)O)OC1OC(C)C(C(C1O)O)O,OCC1OC(Oc2cc(O)c3c(c2)OC(CC3=O)c2ccc(c(c2)O)O)C(C(C1O)O)OC1OC(C)C(C(C1O)O)O,1,1
 213,213,Quinine,Bitter,Rojas et al. (2017),C=CC1CN2CCC1CC2C(c1ccnc2c1cc(OC)cc2)O,C=CC1CN2CCC1CC2C(c1ccnc2c1cc(OC)cc2)O,1,1
