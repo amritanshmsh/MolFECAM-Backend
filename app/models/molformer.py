@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-from typing import Any, Dict
+from typing import Any, ClassVar, Dict, List
 # In[1]:
 
 dataset_forgetting: Dict[str, Any] = {}
@@ -956,6 +956,7 @@ class MLPClassifier(nn.Module):
 
 # ✅ SMILES Dataset Loader
 class SMILESDataset(Dataset):
+    taste_list: List[str] = []
     def __init__(self, dataframe):
         self.smiles = dataframe["SMILES"].values
         self.labels = dataframe["Label"].values
@@ -963,7 +964,8 @@ class SMILESDataset(Dataset):
         taste_codes, taste_strings = pd.factorize(dataframe["Taste"])
         self.tastes = taste_codes
         # store mapping once
-        self.taste_labels = taste_strings.tolist()
+        global taste_list
+        taste_list = taste_strings.tolist()
 
     def __len__(self):
         return len(self.labels)
@@ -1885,48 +1887,39 @@ def initialize_pipeline():
     return api_feature_extractor, api_classifier
 
 def predict_properties(records: list[str]) -> list[dict]:
-    """
-    Run inference on a list of SMILES.  Returns:
-      [{"property":"predicted_label","value":int or None,"confidence":float}, …]
-    """
     fe, cls = initialize_pipeline()
     out_recs = []
-    for smi in records:
-        # start with original metadata
-        out = {"smiles": smi}
+    all_heads = ("label", "taste", "fda", "tox21_id")
 
-        if not smi.strip():
-            # empty SMILES → all preds None/0
-            for head in ("label","taste","fda","tox21_id"):
-                out[f"predicted_{head}"]  = None
-                out[f"confidence_{head}"] = 0.0
-            out_recs.append(out)
-            continue
+    for smi in records:
+        out = {"smiles": smi}
+        # … empty‐SMILES guard …
 
         feats = fe([smi])
         with torch.no_grad():
             logits = cls(feats)
 
-        # normalize to a dict of head→logits
+        # unify into dict head→tensor
         if isinstance(logits, tuple):
-            # your two‐head model prints (label, taste) or (label, fda)
-            # assume order matches these names; adjust if needed
-            # here we bind first to "label" and second to whichever meta the rec had
-            second_head = "fda" if "FDA_APPROVED" in smi else "taste"
-            out_logits = {"label": logits[0], second_head: logits[1]}
+            # your two‐head logic...
+            out_logits = {"label": logits[0], "taste": logits[1]}  # adjust if fda case
         elif isinstance(logits, dict):
             out_logits = logits
         else:
-            # single head only
             out_logits = {"label": logits}
 
-        # now for each of the four possible heads do softmax & argmax
-        for head in ("label","taste","fda","tox21_id"):
+        # now map each head
+        for head in all_heads:
             if head in out_logits:
                 probs = torch.softmax(out_logits[head], dim=1)[0].cpu().numpy()
                 idx   = int(probs.argmax())
                 conf  = float(probs[idx])
-                out[f"predicted_{head}"]  = idx if conf>0.7 else None
+                if head == "taste":
+                    # lookup string
+                    taste_str = taste_list[idx]
+                    out[f"predicted_{head}"] = taste_str
+                else:
+                    out[f"predicted_{head}"] = idx
                 out[f"confidence_{head}"] = conf
             else:
                 out[f"predicted_{head}"]  = None
