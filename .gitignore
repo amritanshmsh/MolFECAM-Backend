@@ -33,5 +33,4 @@ build/
 .ipynb_checkpoints/
 
 # Data or outputs
-data/
 outputs/
