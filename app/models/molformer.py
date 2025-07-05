@@ -1869,6 +1869,8 @@ print("\n✅ Clintox Incremental Learning with Anytime Accuracy Computation Comp
 
 # ─── API integration ─────────────────────────────────────────────────────────────
 
+import os
+
 # will point at the final `feature_extractor` & `classifier` from your loops
 api_feature_extractor = None
 api_classifier        = None
@@ -1883,6 +1885,8 @@ def initialize_pipeline():
     if api_feature_extractor is None or api_classifier is None:
         api_feature_extractor = feature_extractor
         api_classifier        = classifier
+        if os.path.exists("classifier.pth"):
+            api_classifier.load_state_dict(torch.load("classifier.pth"))
         api_classifier.eval()
     return api_feature_extractor, api_classifier
 
@@ -1933,4 +1937,5 @@ def get_forgetting_measures() -> Dict[str, Any]:
     Returns a dict mapping dataset name → its computed forgetting measure.
     """
     return dataset_forgetting
+torch.save(classifier.state_dict(), "classifier.pth")
 # ────────────────────────────────────────────────────────────────────────────────

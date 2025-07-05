@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from app.schemas import MoleculeRequest, PredictionResponse
 # from app.services.predictor import make_prediction
-from app.models.molformer import initialize_pipeline, predict_properties
+from app.models.molformer import initialize_pipeline, predict_properties, get_forgetting_measures
 router = APIRouter()
 
 feature_extractor, classifier = initialize_pipeline()
@@ -20,3 +20,7 @@ def predict_molecular_properties(request: MoleculeRequest):
     
     predictions = predict_properties(valid_smiles)
     return {"results": predictions}
+
+@router.get("/metrics/forgetting")
+def forgetting_metrics():
+    return get_forgetting_measures()
