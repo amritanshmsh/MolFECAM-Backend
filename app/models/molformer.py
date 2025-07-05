@@ -7,14 +7,14 @@ dataset_forgetting: Dict[str, Any] = {}
 import warnings as w
 w.filterwarnings('ignore')
 
-bbbp_d = "C:/Chaitanya/MolFECAM/MolFECAM-Backend/data/BBBP.csv"
-np_d = "C:/Chaitanya/MolFECAM/MolFECAM-Backend/data/NP.csv"
-toxcast_d = "C:/Chaitanya/MolFECAM/MolFECAM-Backend/data/Toxcast.csv"
-sider_d = "C:/Chaitanya/MolFECAM/MolFECAM-Backend/data/Sider.csv"
-bitter_d = "C:/Chaitanya/MolFECAM/MolFECAM-Backend/data/explbitter.csv"
-sweet_d = "C:/Chaitanya/MolFECAM/MolFECAM-Backend/data/explsweet.csv"
-tox_d = "C:/Chaitanya/MolFECAM/MolFECAM-Backend/data/Tox21.csv"
-clintox_d = "C:/Chaitanya/MolFECAM/MolFECAM-Backend/data/clintox.csv"
+bbbp_d = "data/BBBP.csv"
+np_d = "data/NP.csv"
+toxcast_d = "data/Toxcast.csv"
+sider_d = "data/Sider.csv"
+bitter_d = "data/explbitter.csv"
+sweet_d = "data/explsweet.csv"
+tox_d = "data/Tox21.csv"
+clintox_d = "data/clintox.csv"
 
 incremental_tasks = [5, 20, 25, 30]
 
