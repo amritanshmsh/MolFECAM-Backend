@@ -2,19 +2,20 @@
 # coding: utf-8
 from typing import Any, ClassVar, Dict, List
 # In[1]:
-
+import os
 dataset_forgetting: Dict[str, Any] = {}
 import warnings as w
 w.filterwarnings('ignore')
+current_script_dir = os.path.dirname(os.path.abspath(__file__))
 
-bbbp_d = "data/BBBP.csv"
-np_d = "data/NP.csv"
-toxcast_d = "data/Toxcast.csv"
-sider_d = "data/Sider.csv"
-bitter_d = "data/explbitter.csv"
-sweet_d = "data/explsweet.csv"
-tox_d = "data/Tox21.csv"
-clintox_d = "data/clintox.csv"
+bbbp_d = os.path.join(current_script_dir, 'data', 'BBBP.csv')
+np_d = os.path.join(current_script_dir, 'data', 'NP.csv')
+toxcast_d = os.path.join(current_script_dir, 'data', 'Toxcast.csv')
+sider_d = os.path.join(current_script_dir, 'data', 'Sider.csv')
+bitter_d = os.path.join(current_script_dir, 'data', 'explbitter.csv')
+sweet_d = os.path.join(current_script_dir,  'data', 'explsweet.csv')
+tox_d = os.path.join(current_script_dir, 'data', 'Tox21.csv')
+clintox_d = os.path.join(current_script_dir, 'data', 'clintox.csv')
 
 incremental_tasks = [5, 20, 25, 30]
 
