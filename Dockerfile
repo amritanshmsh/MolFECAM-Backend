@@ -10,7 +10,6 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 # Copy the application code and the pre-trained model
 COPY ./app /code/app
-COPY ./classifier.pth /code/classifier.pth
 
 # Command to run the application
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "app.main:app", "--reload"]
